@@ -2,6 +2,7 @@ package com.zavedahmad.materialColorsCompanion.ui.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -15,13 +16,35 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.navigation3.runtime.NavKey
 import com.zavedahmad.materialColorsCompanion.Screen
-@OptIn( ExperimentalMaterial3Api::class)
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyTopABCommon(backStack: SnapshotStateList<NavKey>, scrollBehavior: TopAppBarScrollBehavior,title :String){
+fun MyTopABCommon(
+    backStack: SnapshotStateList<NavKey>,
+    scrollBehavior: TopAppBarScrollBehavior,
+    title: String,
+    actions: @Composable () -> Unit
+) {
     TopAppBar(
         title = { Text(title) },
-        actions = { Row {
-            IconButton(onClick = {backStack.add(Screen.SettingsPageRoute)}){ Icon(imageVector = Icons.Outlined.Settings, contentDescription = "Settings")} }},
+        actions = {
+            Row {
+                actions()
+
+                IconButton(onClick = {}) {
+                    Icon(
+                        imageVector = Icons.Outlined.Settings,
+                        contentDescription = "Settings"
+                    )
+                }
+                IconButton(onClick = { backStack.add(Screen.SettingsPageRoute) }) {
+                    Icon(
+                        imageVector = Icons.Outlined.Settings,
+                        contentDescription = "Settings"
+                    )
+                }
+            }
+        },
         colors = TopAppBarDefaults.topAppBarColors(
 
             titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer

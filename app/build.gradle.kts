@@ -30,7 +30,7 @@ android {
 
     defaultConfig {
         applicationId = "com.zavedahmad.materialColorsCompanion"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "0.0.1"
@@ -68,6 +68,15 @@ android {
 }
 
 dependencies {
+//    colorPicker
+    implementation("com.github.KvColorPalette:KvColorPicker-Android:2.1.0")
+    //dynamic Color
+
+    implementation("com.materialkolor:material-kolor:3.0.0-beta07")
+
+//    dragable items import
+
+        implementation("sh.calvin.reorderable:reorderable:2.5.1")
 
     //room imports
     val roomVersion = "2.7.1"
